@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loncheria T&J</title>
+  <link rel="stylesheet" href="css/diseño.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <h1>🍽️ Comida</h1>
+    <button id="cart-button">🍽️ <span id="cart-count">0</span></button>
+    
+    
+  </header>
+
+  <main>
+  <h2>🍔 Comidas</h2>
+  <section id="catalogo-comidas" class="grid"></section>
+
+  <h2>🥤 Bebidas</h2>
+  <section id="catalogo-bebidas" class="grid"></section>
+</main>
+
+
+  <aside id="carrito" class="carrito">
+    <h2>🍽️ Tu Plato</h2>
+    <ul id="cart-items"></ul>
+    <div class="total">
+      Total: <span id="cart-total">$0</span>
+    </div>
+    <div id="paypal-button-container"></div>
+    <button onclick="vaciarCarrito()" class="btn-vaciar">Vaciar</button>
+  </aside>
+
+  <hr>
+  <footer>
+    <p>Loncheria T&J desde 1980</p>
+
+    <div id="redSocial">
+      <a href="">Facebook</a>
+      <a href="">Instagram</a>
+    </div>
+
+    <div> 
+    <p id="ubicacion" class="ubicacion">Ubicacion</p>
+    <div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
+		<div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div><script>(function () {
+        var setting = {"query":"Loncheria Tere, 5 de Mayo, Zona Centro, Aguascalientes, Ags., México","width":800,"height":600,"satellite":false,"zoom":20,"placeId":"ChIJ8VU5gIvvKYQRN9uALk3uweg","cid":"0xe8c1ee4d2e80db37","coords":[21.884459,-102.2975625],"cityUrl":"/mexico/aguascalientes-18480","cityAnchorText":"Map of Aguascalientes, Aguascalientes, Mexico","lang":"es-es","queryString":"Loncheria Tere, 5 de Mayo, Zona Centro, Aguascalientes, Ags., México","centerCoord":[21.884459,-102.2975625],"id":"map-9cd199b9cc5410cd3b1ad21cab2e54d3","embed_id":"1236608"};
+        var d = document;
+        var s = d.createElement('script');
+        s.src = 'https://1map.com/js/script-for-user.js?embed_id=1236608';
+        s.async = true;
+        s.onload = function (e) {
+          window.OneMap.initMap(setting)
+        };
+        var to = d.getElementsByTagName('script')[0];
+        to.parentNode.insertBefore(s, to);
+      })();</script></div>
+    
+      
+    </div>
+
+     
+  </footer>
+
+
+  <script src="js/script.js"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+
+</body>
+</html>
