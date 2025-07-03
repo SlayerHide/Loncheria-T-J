@@ -2,7 +2,8 @@ const comidas = [
   { id: 1, nombre: "Hamburguesa", precio: 135, imagen: "https://th.bing.com/th/id/OIP.xpHtN8nOMEDD69KJLoiHDAHaHa?r=0&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3r" },
   { id: 2, nombre: "Hot dogs", precio: 60, imagen: "https://th.bing.com/th/id/R.f92425fc6ed1701e750c84c9cb800d5b?rik=lhmtvijyVU2qPQ&pid=ImgRaw&r=0" },
   { id: 3, nombre: "Tortas", precio: 150, imagen: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Tortamex.jpg/220px-Tortamex.jpg" },
-  { id: 4, nombre: "Sandwich", precio: 150, imagen: "https://th.bing.com/th/id/OIP.vOkaquI7-b5Gm92Tz6XuQAHaE8?r=0&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3" }
+  { id: 4, nombre: "Sandwich", precio: 150, imagen: "https://th.bing.com/th/id/OIP.vOkaquI7-b5Gm92Tz6XuQAHaE8?r=0&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3" },
+  { id: 5, nombre: "Sincronizada", precio: 150, imagen: "https://tse4.mm.bing.net/th/id/OIP.TR-g0D-lay8Ls20uyafTUQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" }
 ];
 
 
