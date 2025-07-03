@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  height: 100%;
+}
+
+.hero {
+  background: linear-gradient(to bottom right, #ff5722, #ff9800);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  min-height: 100vh;
+}
+
+header h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.slogan {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.descripcion p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.cta button {
+  background-color: #ffffff;
+  color: #ff5722;
+  border: none;
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta button:hover {
+  background-color: #ffe0b2;
+}
+
+footer {
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.contacto p {
+  margin: 0.3rem 0;
+}
+
+.servicios {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 2rem 1rem;
+  border-radius: 20px;
+}
+
+.servicio {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  padding: 1rem;
+  max-width: 250px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.servicio:hover {
+  transform: translateY(-5px);
+}
+
+.servicio img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+}
+
+.servicio h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.servicio p {
+  font-size: 0.95rem;
+  color: #fbe9e7;
+}

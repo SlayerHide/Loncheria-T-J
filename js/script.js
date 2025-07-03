@@ -7,9 +7,9 @@ const comidas = [
 
 
 const bebidas = [
-  { id: 101, nombre: "Coca Cola", precio: 50, imagen: "https://source.unsplash.com/300x200/?coca-cola" },
-  { id: 102, nombre: "Jugo Natural", precio: 60, imagen: "https://source.unsplash.com/300x200/?juice" },
-  { id: 103, nombre: "Agua", precio: 40, imagen: "https://source.unsplash.com/300x200/?water" },
+  { id: 101, nombre: "Coca Cola", precio: 50, imagen: "https://us.coca-cola.com/content/dam/nagbrands/us/coke/en/value-collection/coca-cola-1.25-liter-new.png" },
+  { id: 102, nombre: "Jugo Natural de Naranja", precio: 60, imagen: "https://tse1.mm.bing.net/th/id/OIP.ROmg7H3b1keEeZ8u50dnbgHaHh?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" },
+  { id: 103, nombre: "Agua Natural", precio: 40, imagen: "https://tse4.mm.bing.net/th/id/OIP.1beF0DG1-swyjt1UuNbYrAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" },
   
 ];
 
@@ -34,7 +34,7 @@ function renderCatalogo() {
       <img src="${producto.imagen}" alt="${producto.nombre}">
       <h3>${producto.nombre}</h3>
       <p>$${producto.precio}</p>
-      <button onclick="agregarAlCarrito(${producto.id})">Agregar</button>
+      <button onclick="agregarAlCarrito(${producto.id})">Agregar a tu plato</button>
     `;
     contenedorComidas.appendChild(card);
   });
@@ -47,7 +47,7 @@ function renderCatalogo() {
       <img src="${producto.imagen}" alt="${producto.nombre}">
       <h3>${producto.nombre}</h3>
       <p>$${producto.precio}</p>
-      <button onclick="agregarAlCarrito(${producto.id})">Agregar</button>
+      <button onclick="agregarAlCarrito(${producto.id})">Agregar a tu comida</button>
     `;
     contenedorBebidas.appendChild(card);
   });
@@ -149,3 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCatalogo();
 });
 
+function irAPagina() {
+ 
+  window.location.href = "comida.html";
+}
