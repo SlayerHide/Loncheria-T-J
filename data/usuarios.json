@@ -1,0 +1,4 @@
+[
+  { "id": 1, "nombre": "Juan", "correo": "juan@mail.com", "password": "1234", "rol": "cliente", "domicilio": "Dirección 1" },
+  { "id": 2, "nombre": "Admin", "correo": "admin@mail.com", "password": "admin", "rol": "admin", "domicilio": "Tecnm" }
+]

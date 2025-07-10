@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login / Registro - Lonchería T&J</title>
+  <link rel="stylesheet" href="../css/login.css" />
+</head>
+<body>
+
+  <div class="login-container">
+    <h1>Bienvenido a T&J</h1>
+    <p>Inicia sesión o regístrate para continuar</p>
+
+    <form id="loginForm">
+      <input type="email" id="loginEmail" placeholder="Correo" required />
+      <input type="password" id="loginPassword" placeholder="Contraseña" required />
+      <button type="submit">Iniciar sesión</button>
+    </form>
+
+    <h3>¿No tienes cuenta? Regístrate aquí:</h3>
+
+    <form id="registerForm">
+      <input type="text" id="regNombre" placeholder="Nombre completo" required />
+      <input type="email" id="regEmail" placeholder="Correo" required />
+      <input type="password" id="regPassword" placeholder="Contraseña" required />
+      <input type="text" id="regDomicilio" placeholder="Domicilio" required />
+      <button type="submit">Registrarme</button>
+    </form>
+
+     <div style="text-align: center; margin-top: 1rem;">
+  <a href="../index.html" class="btn-regresar">🏠 Regresar al inicio</a>
+</div>
+  </div>
+
+ 
+
+
+  <script src="../js/init.js"></script>
+  <script src="../js/auth.js"></script>
+</body>
+</html>

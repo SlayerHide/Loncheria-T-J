@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración - T&J</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+  <div class="admin-container">
+    <h1> Panel de Administración</h1>
+
+    <section class="admin-section">
+      <h2>Crear Producto</h2>
+      <form id="crearProductoForm" class="admin-form">
+        <input type="text" id="nuevoNombre" placeholder="Nombre" required>
+        <input type="number" id="nuevoPrecio" placeholder="Precio" required>
+        <input type="number" id="nuevoStock" placeholder="Stock" required>
+        <select id="nuevoCategoria" required>
+          <option value="comida">Comida</option>
+          <option value="bebida">Bebida</option>
+        </select>
+        <button type="submit">Crear</button>
+      </form>
+    </section>
+
+    <section class="admin-section">
+      <h2>Productos Existentes</h2>
+      <div id="listaProductos" class="productos-lista"></div>
+    </section>
+    <button id="cerrarSesion" style="margin-top: 2rem; background: #c62828;">Cerrar sesión</button>
+
+  </div>
+
+  <script src="../js/init.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

@@ -1,22 +1,5 @@
-const comidas = [
-  { id: 1, nombre: "Hamburguesa", precio: 135, imagen: "https://th.bing.com/th/id/OIP.xpHtN8nOMEDD69KJLoiHDAHaHa?r=0&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3r" },
-  { id: 2, nombre: "Hot dogs", precio: 60, imagen: "https://th.bing.com/th/id/R.f92425fc6ed1701e750c84c9cb800d5b?rik=lhmtvijyVU2qPQ&pid=ImgRaw&r=0" },
-  { id: 3, nombre: "Tortas", precio: 150, imagen: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Tortamex.jpg/220px-Tortamex.jpg" },
-  { id: 4, nombre: "Sandwich", precio: 150, imagen: "https://th.bing.com/th/id/OIP.vOkaquI7-b5Gm92Tz6XuQAHaE8?r=0&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3" },
-  { id: 5, nombre: "Sincronizada", precio: 150, imagen: "https://tse4.mm.bing.net/th/id/OIP.TR-g0D-lay8Ls20uyafTUQHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" }
-];
-
-
-const bebidas = [
-  { id: 101, nombre: "Coca Cola", precio: 50, imagen: "https://us.coca-cola.com/content/dam/nagbrands/us/coke/en/value-collection/coca-cola-1.25-liter-new.png" },
-  { id: 102, nombre: "Jugo Natural de Naranja", precio: 60, imagen: "https://tse1.mm.bing.net/th/id/OIP.ROmg7H3b1keEeZ8u50dnbgHaHh?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" },
-  { id: 103, nombre: "Agua Natural", precio: 40, imagen: "https://tse4.mm.bing.net/th/id/OIP.1beF0DG1-swyjt1UuNbYrAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" },
-  
-];
-
 let carrito = [];
 
-const catalogo = document.getElementById("catalogo");
 const cartCount = document.getElementById("cart-count");
 const cartItems = document.getElementById("cart-items");
 const cartTotal = document.getElementById("cart-total");
@@ -27,46 +10,66 @@ document.getElementById("cart-button").addEventListener("click", () => {
 });
 
 function renderCatalogo() {
-  const contenedorComidas = document.getElementById("catalogo-comidas");
-  comidas.forEach(producto => {
-    const card = document.createElement("div");
-    card.className = "producto";
-    card.innerHTML = `
-      <img src="${producto.imagen}" alt="${producto.nombre}">
-      <h3>${producto.nombre}</h3>
-      <p>$${producto.precio}</p>
-      <button onclick="agregarAlCarrito(${producto.id})">Agregar a tu plato</button>
-    `;
-    contenedorComidas.appendChild(card);
-  });
+  const catalogoComidas = document.getElementById("catalogo-comidas");
+  const catalogoBebidas = document.getElementById("catalogo-bebidas");
 
-  const contenedorBebidas = document.getElementById("catalogo-bebidas");
-  bebidas.forEach(producto => {
+  catalogoComidas.innerHTML = "";
+  catalogoBebidas.innerHTML = "";
+
+  const productos = getProductos();
+
+  productos.forEach(p => {
     const card = document.createElement("div");
     card.className = "producto";
     card.innerHTML = `
-      <img src="${producto.imagen}" alt="${producto.nombre}">
-      <h3>${producto.nombre}</h3>
-      <p>$${producto.precio}</p>
-      <button onclick="agregarAlCarrito(${producto.id})">Agregar a tu comida</button>
+      <img src="${p.imagen}" alt="${p.nombre}">
+      <h3>${p.nombre}</h3>
+      <p>Precio: $${p.precio}</p>
+      <p>Stock: ${p.stock}</p>
+      <button onclick="agregarAlCarrito(${p.id})">Agregar</button>
     `;
-    contenedorBebidas.appendChild(card);
+
+    if (p.categoria === "comida") {
+      catalogoComidas.appendChild(card);
+    } else if (p.categoria === "bebida") {
+      catalogoBebidas.appendChild(card);
+    }
   });
 }
-
-
 
 function agregarAlCarrito(id) {
+  const user = getCurrentUser();
+  if (!user) {
+    alert("Debes iniciar sesión para agregar productos al carrito.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  const productos = getProductos();
+  const producto = productos.find(p => p.id === id);
+  if (!producto) {
+    alert("Producto no encontrado.");
+    return;
+  }
+
+  if (producto.stock <= 0) {
+    alert(`Lo sentimos, ${producto.nombre} está agotado.`);
+    return;
+  }
+
   const index = carrito.findIndex(item => item.id === id);
   if (index !== -1) {
-    carrito[index].cantidad++;
+    if (carrito[index].cantidad < producto.stock) {
+      carrito[index].cantidad++;
+    } else {
+      alert(`No puedes agregar más de ${producto.stock} unidades de ${producto.nombre}.`);
+    }
   } else {
-    const producto = [...comidas, ...bebidas].find(p => p.id === id);
     carrito.push({ ...producto, cantidad: 1 });
   }
+
   actualizarCarrito();
 }
-
 
 function eliminarUno(id) {
   const index = carrito.findIndex(item => item.id === id);
@@ -107,17 +110,17 @@ function actualizarCarrito() {
     cartItems.appendChild(li);
     total += item.precio * item.cantidad;
     cantidadTotal += item.cantidad;
-
-     renderPayPalButton();
   });
 
   cartCount.textContent = cantidadTotal;
   cartTotal.textContent = `$${total}`;
+
+  renderPayPalButton();
 }
+
+
 function renderPayPalButton() {
   const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
-
-  // Limpiar antes de volver a renderizar
   document.getElementById("paypal-button-container").innerHTML = "";
 
   if (total > 0) {
@@ -125,9 +128,7 @@ function renderPayPalButton() {
       createOrder: function(data, actions) {
         return actions.order.create({
           purchase_units: [{
-            amount: {
-              value: total.toFixed(2)
-            }
+            amount: { value: total.toFixed(2) }
           }]
         });
       },
@@ -146,11 +147,79 @@ function vaciarCarrito() {
   actualizarCarrito();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderCatalogo();
-});
+function finalizarPedido() {
+  const user = getCurrentUser();
+  if (!user) {
+    alert("Debes iniciar sesión para finalizar el pedido.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  if (carrito.length === 0) {
+    alert("Tu carrito está vacío.");
+    return;
+  }
+
+  let productos = getProductos();
+  let hayStockSuficiente = true;
+
+  for (let item of carrito) {
+    const producto = productos.find(p => p.id === item.id);
+    if (!producto || producto.stock < item.cantidad) {
+      hayStockSuficiente = false;
+      alert(`No hay suficiente stock para ${item.nombre}. Disponible: ${producto ? producto.stock : 0}`);
+      break;
+    }
+  }
+
+  if (!hayStockSuficiente) return;
+
+  productos = productos.map(p => {
+    const itemCarrito = carrito.find(c => c.id === p.id);
+    if (itemCarrito) {
+      return { ...p, stock: p.stock - itemCarrito.cantidad };
+    }
+    return p;
+  });
+
+  setProductos(productos);
+  carrito = [];
+  actualizarCarrito();
+
+  alert("¡Pedido realizado exitosamente! Gracias por tu compra.");
+}
 
 function irAPagina() {
- 
-  window.location.href = "comida.html";
+  window.location.href = "/views/comida.html";
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderCatalogo();
+
+  const user = getCurrentUser();
+  const perfilArea = document.getElementById("perfil-area");
+  if (perfilArea) {
+    if (user) {
+      perfilArea.innerHTML = `<a href="perfil.html">👤 ${user.nombre}</a>`;
+    } else {
+      perfilArea.innerHTML = `<a href="login.html">Iniciar sesión</a>`;
+    }
+  }
+});
+
+document.addEventListener('click', function(event) {
+  const carritoElement = document.getElementById('carrito');
+  const cartButton = document.getElementById('cart-button');
+
+  if (carritoElement.classList.contains('mostrar') &&
+      !carritoElement.contains(event.target) &&
+      event.target !== cartButton) {
+    carritoElement.classList.remove('mostrar');
+  }
+});
+
+document.getElementById("home-button").addEventListener("click", () => {
+  window.location.href = "../index.html";
+});
+
+

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Producto</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <div class="admin-container">
+    <h1> Editar Producto</h1>
+
+    <form id="editarProductoForm" class="admin-form">
+      <input type="text" id="editNombre" placeholder="Nombre" required>
+      <input type="number" id="editPrecio" placeholder="Precio" required>
+      <input type="number" id="editStock" placeholder="Stock" required>
+      <select id="editCategoria" required>
+        <option value="comida">Comida</option>
+        <option value="bebida">Bebida</option>
+      </select>
+      <button type="submit">Guardar Cambios</button>
+    </form>
+  </div>
+
+  <script src="../js/init.js"></script>
+  <script src="../js/editar.js"></script>
+</body>
+</html>

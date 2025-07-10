@@ -1,0 +1,160 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #FFF7F0 0%, #FFE0B2 100%);
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+
+.admin-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  animation: fadeIn 0.6s ease-out;
+}
+
+h1 {
+  text-align: center;
+  color: #FF5722;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  color: #FF5722;
+  margin-top: 1.5rem;
+  border-bottom: 2px solid #FF5722;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
+
+.admin-form input,
+.admin-form select {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: border 0.2s;
+}
+
+.admin-form input:focus,
+.admin-form select:focus {
+  border: 1px solid #FF5722;
+  outline: none;
+}
+
+.admin-form button {
+  background: #FF5722;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.admin-form button:hover {
+  background: #E64A19;
+  transform: scale(1.05);
+}
+
+.productos-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.producto {
+  background: #fffdfc;
+  border: 1px solid #FF7043;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.producto:hover {
+  transform: translateY(-5px);
+}
+
+.producto strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+  color: #FF5722;
+}
+
+.producto button {
+  background: #FF7043;
+  margin-top: 0.5rem;
+  margin-right: 0.3rem;
+}
+
+.producto button:hover {
+  background: #E64A19;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Botón editar */
+.boton-editar {
+  background: #2196F3;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.boton-editar:hover {
+  background: #1976D2;
+  transform: scale(1.05);
+}
+
+/* Botón eliminar */
+.boton-eliminar {
+  background: #E53935;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.boton-eliminar:hover {
+  background: #C62828;
+  transform: scale(1.05);
+}
+
+/* Botón cerrar sesión */
+#cerrarSesion {
+  background: #6D4C41;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s;
+  display: block;
+  margin: 2rem auto 0 auto;
+}
+
+#cerrarSesion:hover {
+  background: #5D4037;
+  transform: scale(1.05);
+}

@@ -4,22 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Loncheria T&J</title>
-  <link rel="stylesheet" href="css/diseño.css" />
+  <link rel="stylesheet" href="../css/diseño.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header>
-    <h1>🍽️ Comida</h1>
+  <h1 style="display: flex; align-items: center; gap: 10px;">
+    <button id="home-button" class="btn-home">🏠</button>
+    Comida
+  </h1>
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <div id="perfil-area"></div>
     <button id="cart-button">🍽️ <span id="cart-count">0</span></button>
-    
-    
-  </header>
+  </div>
+</header>
+
 
   <main>
-  <h2>🍔 Comidas</h2>
+  <h2> Comidas</h2>
   <section id="catalogo-comidas" class="grid"></section>
 
-  <h2>🥤 Bebidas</h2>
+  <h2> Bebidas</h2>
   <section id="catalogo-bebidas" class="grid"></section>
 </main>
 
@@ -65,8 +70,8 @@
      
   </footer>
 
-
-  <script src="js/script.js"></script>
+  <script src="../js/init.js"></script>
+  <script src="../js/script.js"></script>
   <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
 
 </body>

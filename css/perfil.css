@@ -1,0 +1,43 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #ff7043, #ff5722);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.perfil-container {
+  background: rgba(255,255,255,0.1);
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+input {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 10px;
+}
+
+button {
+  margin-top: 1rem;
+  background: #fff;
+  color: #ff5722;
+  font-weight: bold;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ffe0b2;
+}

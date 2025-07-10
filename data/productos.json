@@ -1,0 +1,4 @@
+[
+  { "id": 1, "nombre": "Torta", "precio": 40, "stock": 10, "categoria": "comida" },
+  { "id": 2, "nombre": "Refresco", "precio": 20, "stock": 20, "categoria": "bebida" }
+]
