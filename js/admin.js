@@ -89,3 +89,7 @@ document.getElementById("cerrarSesion").addEventListener("click", () => {
   alert("Sesión cerrada.");
   window.location.href = "login.html";
 });
+
+function irAPedidos() {
+  window.location.href = "/views/adminPedidos.html";
+}

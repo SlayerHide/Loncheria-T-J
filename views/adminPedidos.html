@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedidos y Ganancias - Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #FFF7F0;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease;
+    }
+
+    h1 {
+      color: #FF5722;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      margin-top: 2rem;
+      color: #FF7043;
+    }
+
+    .pedido {
+      background: #FFF3E0;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .pedido strong {
+      color: #FF5722;
+    }
+
+    .ganancias {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #388E3C;
+      margin-top: 2rem;
+    }
+
+    .btn-volver {
+      display: block;
+      margin: 2rem auto 0 auto;
+      background: #FF5722;
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      text-align: center;
+      width: fit-content;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn-volver:hover {
+      background: #E64A19;
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>📦 Pedidos y Ganancias</h1>
+
+    <div id="listaPedidos">
+      <!-- Pedidos se cargan aquí -->
+    </div>
+
+    <div class="ganancias">
+      Total Ganancias: $<span id="totalGanancias"></span>
+    </div>
+
+    <a href="admin.html" class="btn-volver">Volver al panel</a>
+  </div>
+
+  <script>
+    // Simulación: pedidos almacenados en localStorage (en producción esto vendría de un backend)
+    const pedidos = JSON.parse(localStorage.getItem('historialPedidos')) || [];
+
+    const listaPedidos = document.getElementById('listaPedidos');
+    const totalGananciasEl = document.getElementById('totalGanancias');
+
+    let totalGanancias = 0;
+
+    pedidos.forEach((pedido, index) => {
+      const div = document.createElement('div');
+      div.className = 'pedido';
+      div.innerHTML = `
+        <p><strong>Pedido #${index + 1}</strong></p>
+        <p>Cliente: ${pedido.nombre}</p>
+        <p>Domicilio: ${pedido.domicilio}</p>
+        <ul>
+          ${pedido.items.map(item => `<li>${item.nombre} x ${item.cantidad} - $${item.precio * item.cantidad}</li>`).join('')}
+        </ul>
+        <p><strong>Total: $${pedido.total.toFixed(2)}</strong></p>
+      `;
+      listaPedidos.appendChild(div);
+
+      totalGanancias += pedido.total;
+    });
+
+    totalGananciasEl.textContent = totalGanancias.toFixed(2);
+  </script>
+
+</body>
+</html>

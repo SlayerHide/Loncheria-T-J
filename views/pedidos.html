@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmación de Pedido - Lonchería T&J</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #FFF7F0;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    h1 {
+      color: #FF5722;
+      font-family: 'Pacifico', cursive;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin: 0.5rem 0;
+    }
+
+    .detalle-pedido {
+      margin-top: 1.5rem;
+      text-align: left;
+    }
+
+    .detalle-pedido ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .detalle-pedido li {
+      background: #FFF3E0;
+      padding: 0.6rem 1rem;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+    }
+
+    .total {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      color: #FF5722;
+    }
+
+    .btn-home {
+      margin-top: 2rem;
+      display: inline-block;
+      background: #FF5722;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn-home:hover {
+      background: #E64A19;
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>✅ ¡Gracias por tu pedido!</h1>
+    <p><strong>Nombre:</strong> <span id="nombreCliente"></span></p>
+    <p><strong>Domicilio:</strong> <span id="domicilioCliente"></span></p>
+
+    <div class="detalle-pedido">
+      <h3>Tu pedido:</h3>
+      <ul id="listaPedido">
+        <!-- Productos del pedido aquí -->
+      </ul>
+      <p class="total">Total: $<span id="totalPedido"></span></p>
+    </div>
+
+    <a href="comida.html" class="btn-home">Seguir comprando</a>
+  </div>
+
+  <script>
+    // Simulación: datos que normalmente vendrían de localStorage o backend
+    const cliente = JSON.parse(localStorage.getItem('currentUser')) || { nombre: 'Cliente', domicilio: 'Domicilio' };
+    const pedido = JSON.parse(localStorage.getItem('carrito')) || [];
+    
+    let total = 0;
+
+    document.getElementById('nombreCliente').textContent = cliente.nombre;
+    document.getElementById('domicilioCliente').textContent = cliente.domicilio;
+
+    const listaPedido = document.getElementById('listaPedido');
+    pedido.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.nombre} x ${item.cantidad} — $${item.precio * item.cantidad}`;
+      listaPedido.appendChild(li);
+      total += item.precio * item.cantidad;
+    });
+
+    document.getElementById('totalPedido').textContent = total.toFixed(2);
+
+    // Limpiar carrito después de mostrar confirmación
+    localStorage.removeItem('carrito');
+  </script>
+
+</body>
+</html>

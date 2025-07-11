@@ -193,6 +193,10 @@ function irAPagina() {
   window.location.href = "/views/comida.html";
 }
 
+function irAInicio() {
+  window.location.href = "/index.html";
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   renderCatalogo();
 
