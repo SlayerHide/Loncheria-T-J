@@ -20,8 +20,7 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
   const password = document.getElementById("loginPassword").value.trim();
 
   const usuarios = getUsuarios();
-  console.log("Usuarios actuales en login:", usuarios);  
-  const user = usuarios.find(u => 
+  const user = usuarios.find(u =>
     u.correo.trim().toLowerCase() === email &&
     u.password === password
   );
@@ -40,32 +39,54 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
   }
 });
 
+let pendienteCrear = null;
+
 document.getElementById("registerForm").addEventListener("submit", function(e) {
   e.preventDefault();
-  const nombre = document.getElementById("regNombre").value;
-  const email = document.getElementById("regEmail").value;
-  const password = document.getElementById("regPassword").value;
-  const domicilio = document.getElementById("regDomicilio").value;
+
+  const nombre = document.getElementById("regNombre").value.trim();
+  const correo = document.getElementById("regEmail").value.trim().toLowerCase();
+  const password = document.getElementById("regPassword").value.trim();
+  const domicilio = document.getElementById("regDomicilio").value.trim();
 
   let usuarios = getUsuarios();
 
-  if (usuarios.find(u => u.correo.trim().toLowerCase() === email.trim().toLowerCase())) {
+  if (!nombre || !correo || !password || !domicilio) {
+    alert("Por favor completa todos los campos.");
+    return;
+  }
+
+  if (usuarios.find(u => u.correo.trim().toLowerCase() === correo)) {
     alert("Este correo ya está registrado.");
     return;
   }
 
-  const newUser = {
-    id: Date.now(),
-    nombre,
-    correo: email,
-    password,
-    rol: "cliente",
-    domicilio
-  };
+  pendienteCrear = { nombre, correo, password, domicilio };
 
-  usuarios.push(newUser);
-  setUsuarios(usuarios);
-  setCurrentUser(newUser);
-  alert(`Registro exitoso. Bienvenido, ${newUser.nombre}.`);
-  window.location.href = "comida.html";
+  document.getElementById("modal-terminos").classList.remove("hidden");
+});
+
+document.getElementById("aceptarTerminos").addEventListener("click", function() {
+  if (pendienteCrear) {
+    let usuarios = getUsuarios();
+
+    const newUser = {
+      id: Date.now(),
+      nombre: pendienteCrear.nombre,
+      correo: pendienteCrear.correo,
+      password: pendienteCrear.password,
+      rol: "cliente",
+      domicilio: pendienteCrear.domicilio
+    };
+
+    usuarios.push(newUser);
+    setUsuarios(usuarios);
+    setCurrentUser(newUser);
+
+    alert(`Registro exitoso. Bienvenido, ${newUser.nombre}.`);
+    window.location.href = "comida.html";
+  }
+
+  document.getElementById("modal-terminos").classList.add("hidden");
+  pendienteCrear = null;
 });
