@@ -190,7 +190,7 @@ function finalizarPedido() {
 }
 
 function irAPagina() {
-  window.location.href = "views/comida.html";
+  window.location.href = "../views/comida.html";
 }
 
 function irAInicio() {
