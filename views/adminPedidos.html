@@ -21,18 +21,12 @@
       border-radius: 15px;
       padding: 2rem;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      animation: fadeIn 1s ease;
     }
 
     h1 {
       color: #FF5722;
       text-align: center;
       margin-bottom: 1rem;
-    }
-
-    h2 {
-      margin-top: 2rem;
-      color: #FF7043;
     }
 
     .pedido {
@@ -45,6 +39,11 @@
 
     .pedido strong {
       color: #FF5722;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 1rem;
     }
 
     .ganancias {
@@ -73,57 +72,52 @@
       background: #E64A19;
       transform: translateY(-2px);
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <h1>📦 Pedidos y Ganancias</h1>
+    <h1>Pedidos previos</h1>
 
-    <div id="listaPedidos">
-      <!-- Pedidos se cargan aquí -->
+    <div class="pedido">
+      <p><strong>Pedido #1</strong></p>
+      <p>Cliente: Juan Perez</p>
+      <p>Domicilio: Av. Tecnologico 123, Aguascalientes</p>
+      <ul>
+        <li>Hamburguesa x1 — $135</li>
+        <li>Coca Cola x2 — $100</li>
+      </ul>
+      <p><strong>Total: $235</strong></p>
+    </div>
+
+    <div class="pedido">
+      <p><strong>Pedido #2</strong></p>
+      <p>Cliente: Maria Lopez</p>
+      <p>Domicilio: Col. Heroes 567, Aguascalientes</p>
+      <ul>
+        <li>Torta x1 — $150</li>
+        <li>Agua Natural x1 — $40</li>
+      </ul>
+      <p><strong>Total: $190</strong></p>
+    </div>
+
+    <div class="pedido">
+      <p><strong>Pedido #3</strong></p>
+      <p>Cliente: Carlos Garcia</p>
+      <p>Domicilio: Col. San Marcos 902, Aguascalientes</p>
+      <ul>
+        <li>Sincronizada x2 — $300</li>
+        <li>Jugo de Naranja x2 — $120</li>
+      </ul>
+      <p><strong>Total: $420</strong></p>
     </div>
 
     <div class="ganancias">
-      Total Ganancias: $<span id="totalGanancias"></span>
+      Total de ganancias acumuladas: $845
     </div>
 
     <a href="admin.html" class="btn-volver">Volver al panel</a>
   </div>
-
-  <script>
-    // Simulación: pedidos almacenados en localStorage (en producción esto vendría de un backend)
-    const pedidos = JSON.parse(localStorage.getItem('historialPedidos')) || [];
-
-    const listaPedidos = document.getElementById('listaPedidos');
-    const totalGananciasEl = document.getElementById('totalGanancias');
-
-    let totalGanancias = 0;
-
-    pedidos.forEach((pedido, index) => {
-      const div = document.createElement('div');
-      div.className = 'pedido';
-      div.innerHTML = `
-        <p><strong>Pedido #${index + 1}</strong></p>
-        <p>Cliente: ${pedido.nombre}</p>
-        <p>Domicilio: ${pedido.domicilio}</p>
-        <ul>
-          ${pedido.items.map(item => `<li>${item.nombre} x ${item.cantidad} - $${item.precio * item.cantidad}</li>`).join('')}
-        </ul>
-        <p><strong>Total: $${pedido.total.toFixed(2)}</strong></p>
-      `;
-      listaPedidos.appendChild(div);
-
-      totalGanancias += pedido.total;
-    });
-
-    totalGananciasEl.textContent = totalGanancias.toFixed(2);
-  </script>
 
 </body>
 </html>
