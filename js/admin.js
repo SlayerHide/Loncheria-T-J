@@ -91,5 +91,5 @@ document.getElementById("cerrarSesion").addEventListener("click", () => {
 });
 
 function irAPedidos() {
-  window.location.href = "/views/adminPedidos.html";
+  window.location.href = "../views/adminPedidos.html";
 }
